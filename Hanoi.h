@@ -3,11 +3,15 @@
 
 #include <cstddef>
 
+#include "painter.h"
 #include "pillar.h"
 
 
 class Hanoi
 {
+public:
+    using Painter = CMDPainter;
+
 public:
     enum class LaunchMode
     {
@@ -16,21 +20,21 @@ public:
     };
 
 public:
-    Hanoi(std::size_t num);
+    Hanoi(const std::size_t plate_num);
 
 public:
     void print() const;
-    void operator()(LaunchMode mode);
+    void operator()(const LaunchMode mode);
 
 private:
-    void recursion(std::size_t n, Pillar &A, Pillar &B, Pillar &C);
+    void recursion(const std::size_t plate_num, Pillar &A, Pillar &B, Pillar &C);
     void circulation();
 
 private:
-    std::size_t record;
-    Pillar src;
-    Pillar assist;
-    Pillar dest;
+    const std::size_t mem_plate_num;
+    Pillar mem_src;
+    Pillar mem_assist;
+    Pillar mem_dest;
 };
 
 

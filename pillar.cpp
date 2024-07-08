@@ -2,44 +2,36 @@
 
 
 Pillar::Pillar(std::string name)
-: name(name)
+: mem_name(name)
 {
 }
 
 Pillar::Pillar(std::string name, std::size_t num)
-: store(), name(name)
+: mem_store(), mem_name(name)
 {
-    for (value_t i = num - 1; i >= 0; --i)
+    for (plate_size_t i = num; i > 0; --i)
     {
-        store.push_back(2 * i + 1);
+        mem_store.push_back(i);
     }
 }
 
-void Pillar::push(value_t value)
+void Pillar::move_to(Pillar &other)
 {
-    store.push_back(value);
-}
-
-value_t Pillar::pop()
-{
-    value_t result = store.back();
-
-    store.pop_back();
-
-    return result;
+    other.mem_store.push_back(this->mem_store.back());
+    this->mem_store.pop_back();
 }
 
 std::size_t Pillar::size() const
 {
-    return store.size();
+    return mem_store.size();
 }
 
-value_t Pillar::operator[](std::size_t index) const
+plate_size_t Pillar::operator[](std::size_t index) const
 {
-    return store[index];
+    return mem_store[index];
 }
 
 std::string Pillar::get_name() const
 {
-    return name;
+    return mem_name;
 }

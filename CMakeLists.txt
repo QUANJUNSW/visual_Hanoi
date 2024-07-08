@@ -5,4 +5,4 @@ set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
  
 project(Hanoi)
  
-add_executable(Hanoi main.cpp pillar.cpp hanoi.cpp)
+add_executable(Hanoi main.cpp pillar.cpp hanoi.cpp painter.cpp)
